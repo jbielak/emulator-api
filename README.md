@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/jbielak/emulator-api/tree/master.svg?style=svg)](https://circleci.com/gh/jbielak/emulator-api/tree/master)
+
 # Android Emulator API App
 
 Android Emulator API is a Spring Boot application that enables REST communication with Android emulator running on localhost.

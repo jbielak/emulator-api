@@ -1,6 +1,7 @@
 package com.jbielak.emulatorapi.socket;
 
 import com.jbielak.emulatorapi.dto.LightweightSocket;
+import com.jbielak.emulatorapi.validator.IpAddress;
 
 import java.io.BufferedReader;
 import java.io.PrintWriter;
@@ -8,7 +9,7 @@ import java.io.PrintWriter;
 public interface ClientApi {
 
     LightweightSocket openConnection();
-    LightweightSocket openConnection(String address, Integer port);
+    LightweightSocket openConnection(@IpAddress String address, Integer port);
     LightweightSocket closeConnection();
     PrintWriter getPrintWriter();
     BufferedReader getBufferedReader();

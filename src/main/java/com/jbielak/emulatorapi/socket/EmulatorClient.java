@@ -2,10 +2,12 @@ package com.jbielak.emulatorapi.socket;
 
 
 import com.jbielak.emulatorapi.dto.LightweightSocket;
+import com.jbielak.emulatorapi.validator.IpAddress;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -16,10 +18,12 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 @Component
+@Validated
 public class EmulatorClient implements ClientApi {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EmulatorClient.class);
 
+    @IpAddress
     @Value("${socket.emulator.address}")
     private String LOCALHOST;
 

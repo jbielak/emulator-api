@@ -28,4 +28,8 @@ public class LightweightSocket {
     public void setPort(Integer port) {
         this.port = port;
     }
+
+    public boolean isEmpty() {
+        return address == null && port == null;
+    }
 }

@@ -53,12 +53,13 @@ public class EmulatorClient implements ClientApi {
             printWriter = new PrintWriter(socket.getOutputStream(), true);
             bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             LOGGER.info(String.format("Connection with on %s, port %s.", currentAddress, currentPort));
+            return new LightweightSocket(currentAddress, currentPort);
         } catch (IOException e) {
             LOGGER.error(String.format("Could not open Connection to %s on %s. Check if target machine is running",
                     currentAddress, currentPort), e);
         }
 
-        return new LightweightSocket(currentAddress, currentPort);
+        return new LightweightSocket();
     }
 
     @Override
@@ -75,12 +76,13 @@ public class EmulatorClient implements ClientApi {
                     currentAddress, currentPort));
             currentAddress = null;
             currentPort = null;
+            return socketToClose;
         } catch (IOException e) {
             LOGGER.error(String.format("Could not close Connection socket connection" +
                             "to Android Emulator on %s, port %s.",
                     currentAddress, currentPort), e);
         }
-        return socketToClose;
+        return new LightweightSocket();
     }
 
     @Override

@@ -2,12 +2,10 @@ package com.jbielak.emulatorapi.socket;
 
 
 import com.jbielak.emulatorapi.dto.LightweightSocket;
-import com.jbielak.emulatorapi.validation.IpAddress;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import org.springframework.validation.annotation.Validated;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -18,12 +16,10 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 @Component
-@Validated
 public class EmulatorClient implements ClientApi {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EmulatorClient.class);
 
-    @IpAddress
     @Value("${socket.emulator.address}")
     private String LOCALHOST;
 
@@ -56,7 +52,7 @@ public class EmulatorClient implements ClientApi {
             socket = new Socket(address, port);
             printWriter = new PrintWriter(socket.getOutputStream(), true);
             bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            LOGGER.info(String.format("Connection with on %s, port %s.", currentAddress, currentPort));
+            LOGGER.info(String.format("Connection with %s, on port %s established.", currentAddress, currentPort));
             return new LightweightSocket(currentAddress, currentPort);
         } catch (IOException e) {
             LOGGER.error(String.format("Could not open Connection to %s on %s. Check if target machine is running",
@@ -82,8 +78,8 @@ public class EmulatorClient implements ClientApi {
             currentPort = null;
             return socketToClose;
         } catch (IOException e) {
-            LOGGER.error(String.format("Could not close Connection socket connection" +
-                            "to Android Emulator on %s, port %s.",
+            LOGGER.error(String.format("Could not close Connection socket connection"
+                            + "to Android Emulator on %s, port %s.",
                     currentAddress, currentPort), e);
         }
         return new LightweightSocket();

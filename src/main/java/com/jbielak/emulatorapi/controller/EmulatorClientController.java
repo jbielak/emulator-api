@@ -4,11 +4,18 @@ import com.jbielak.emulatorapi.dto.LightweightSocket;
 import com.jbielak.emulatorapi.exception.ClientConnectionException;
 import com.jbielak.emulatorapi.socket.ClientApi;
 import com.jbielak.emulatorapi.validation.IpAddress;
+import com.jbielak.emulatorapi.validation.Port;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.constraints.NotNull;
 
 @RestController
 @RequestMapping("/api/emulator_client")
@@ -31,8 +38,8 @@ public class EmulatorClientController {
 
     @RequestMapping(value = "/connect/{address}/{port}", method = RequestMethod.POST)
     public @ResponseBody
-    ResponseEntity<LightweightSocket> connect(@PathVariable @IpAddress String address,
-                                              @PathVariable Integer port)
+    ResponseEntity<LightweightSocket> connect(@PathVariable @NotNull @IpAddress String address,
+                                              @PathVariable @NotNull @Port Integer port)
             throws ClientConnectionException {
 
         LightweightSocket lightweightSocket = emulatorClient.openConnection(address, port);

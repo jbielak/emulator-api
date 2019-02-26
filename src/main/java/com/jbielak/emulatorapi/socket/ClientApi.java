@@ -1,7 +1,7 @@
 package com.jbielak.emulatorapi.socket;
 
 import com.jbielak.emulatorapi.dto.LightweightSocket;
-import com.jbielak.emulatorapi.validator.IpAddress;
+import com.jbielak.emulatorapi.validation.IpAddress;
 
 import java.io.BufferedReader;
 import java.io.PrintWriter;

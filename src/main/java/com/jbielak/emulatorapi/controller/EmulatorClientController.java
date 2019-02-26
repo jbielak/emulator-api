@@ -3,7 +3,7 @@ package com.jbielak.emulatorapi.controller;
 import com.jbielak.emulatorapi.dto.LightweightSocket;
 import com.jbielak.emulatorapi.exception.ClientConnectionException;
 import com.jbielak.emulatorapi.socket.ClientApi;
-import com.jbielak.emulatorapi.validator.IpAddress;
+import com.jbielak.emulatorapi.validation.IpAddress;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

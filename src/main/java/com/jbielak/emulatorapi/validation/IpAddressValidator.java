@@ -1,4 +1,4 @@
-package com.jbielak.emulatorapi.validator;
+package com.jbielak.emulatorapi.validation;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

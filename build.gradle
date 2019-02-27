@@ -14,6 +14,7 @@ repositories {
 }
 
 def junitVersion = '5.4.0'
+def mockitoJUnitJupiterVersion = '2.24.5'
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-jersey'
@@ -24,6 +25,7 @@ dependencies {
     testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
 
+    testImplementation "org.mockito:mockito-junit-jupiter:$mockitoJUnitJupiterVersion"
 }
 
 test {

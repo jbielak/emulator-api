@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.constraints.NotNull;
 
 @RestController
-@RequestMapping("/api/emulator_client")
+@RequestMapping("/api/v1/emulator_client")
 @Validated
 public class EmulatorClientController {
 

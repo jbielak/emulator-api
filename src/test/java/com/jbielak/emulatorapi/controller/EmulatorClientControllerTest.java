@@ -50,7 +50,7 @@ public class EmulatorClientControllerTest {
         when(mockClientApi.openConnection())
                 .thenReturn(new LightweightSocket("127.0.0.1", 5554));
 
-        mockMvc.perform(post("/api/emulator_client/connect")
+        mockMvc.perform(post("/api/v1/emulator_client/connect")
                 .contentType((MediaType.APPLICATION_JSON)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.address", is("127.0.0.1")))
@@ -67,7 +67,7 @@ public class EmulatorClientControllerTest {
         when(mockClientApi.openConnection())
                 .thenReturn(new LightweightSocket());
 
-        mockMvc.perform(post("/api/emulator_client/connect")
+        mockMvc.perform(post("/api/v1/emulator_client/connect")
                 .contentType((MediaType.APPLICATION_JSON)))
                 //.andDo(print())
                 .andExpect(status().isInternalServerError())
@@ -87,7 +87,7 @@ public class EmulatorClientControllerTest {
         when(mockClientApi.openConnection(address, port))
                 .thenReturn(new LightweightSocket(address, port));
 
-        mockMvc.perform(post("/api/emulator_client/connect/{address}/{port}", address, port)
+        mockMvc.perform(post("/api/v1/emulator_client/connect/{address}/{port}", address, port)
                 .contentType((MediaType.APPLICATION_JSON)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.address", is(address)))
@@ -108,7 +108,7 @@ public class EmulatorClientControllerTest {
         when(mockClientApi.openConnection(address, port))
                 .thenReturn(new LightweightSocket());
 
-        mockMvc.perform(post("/api/emulator_client/connect/{address}/{port}", address, port)
+        mockMvc.perform(post("/api/v1/emulator_client/connect/{address}/{port}", address, port)
                 .contentType((MediaType.APPLICATION_JSON)))
                 .andExpect(status().isInternalServerError())
                 .andExpect(status().reason(containsString(
@@ -125,7 +125,7 @@ public class EmulatorClientControllerTest {
         when(mockClientApi.closeConnection())
                 .thenReturn(new LightweightSocket("127.0.0.1", 5554));
 
-        mockMvc.perform(post("/api/emulator_client/disconnect")
+        mockMvc.perform(post("/api/v1/emulator_client/disconnect")
                 .contentType((MediaType.APPLICATION_JSON)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.address", is("127.0.0.1")))
@@ -142,7 +142,7 @@ public class EmulatorClientControllerTest {
         when(mockClientApi.closeConnection())
                 .thenReturn(new LightweightSocket());
 
-        mockMvc.perform(post("/api/emulator_client/disconnect")
+        mockMvc.perform(post("/api/v1/emulator_client/disconnect")
                 .contentType((MediaType.APPLICATION_JSON)))
                 //.andDo(print())
                 .andExpect(status().isInternalServerError())

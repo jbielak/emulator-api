@@ -1,5 +1,7 @@
 package com.jbielak.emulatorapi.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class LightweightSocket {
 
     private String address;
@@ -29,6 +31,7 @@ public class LightweightSocket {
         this.port = port;
     }
 
+    @JsonIgnore
     public boolean isEmpty() {
         return address == null && port == null;
     }

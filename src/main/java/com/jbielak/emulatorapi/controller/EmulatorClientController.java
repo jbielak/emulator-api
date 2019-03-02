@@ -5,7 +5,6 @@ import com.jbielak.emulatorapi.exception.ClientConnectionException;
 import com.jbielak.emulatorapi.socket.ClientApi;
 import com.jbielak.emulatorapi.validation.IpAddress;
 import com.jbielak.emulatorapi.validation.Port;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -22,8 +21,11 @@ import javax.validation.constraints.NotNull;
 @Validated
 public class EmulatorClientController {
 
-    @Autowired
     private ClientApi emulatorClient;
+
+    public EmulatorClientController(ClientApi clientApi) {
+        this.emulatorClient = clientApi;
+    }
 
     @RequestMapping(value = "/connect", method = RequestMethod.POST)
     public @ResponseBody

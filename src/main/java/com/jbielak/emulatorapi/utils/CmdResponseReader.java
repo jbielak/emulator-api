@@ -15,9 +15,7 @@ public abstract class CmdResponseReader {
         StringBuffer sb = new StringBuffer();
         String line;
         try {
-            if (!bufferedReader.ready()) {
-                Thread.sleep(2000);
-            }
+            Thread.sleep(1500);
             while (bufferedReader.ready()) {
                 line = bufferedReader.readLine();
                 sb.append(line).append(" ");

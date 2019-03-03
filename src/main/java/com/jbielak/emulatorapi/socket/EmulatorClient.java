@@ -52,7 +52,9 @@ public class EmulatorClient implements ClientApi {
             socket = new Socket(address, port);
             printWriter = new PrintWriter(socket.getOutputStream(), true);
             bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+
             LOGGER.info(String.format("Connection with %s, on port %s established.", currentAddress, currentPort));
+
             return new LightweightSocket(currentAddress, currentPort);
         } catch (IOException e) {
             LOGGER.error(String.format("Could not open Connection to %s on %s. Check if target machine is running",

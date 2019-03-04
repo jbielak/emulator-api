@@ -50,6 +50,9 @@ java -jar app.jar --spring.config.location=file:./custom.properties
 
 On startup the application is attempting to connect to Android Emulator running on specified address and port so make
  sure to **start the emulator**.
+ 
+## API
+-   [Emlulator Client](https://github.com/jbielak/emulator-api/tree/master/chapters/emulator-client.md)
 
 ## Built With
 -   [Java Development Kit 11](https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html)

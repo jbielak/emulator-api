@@ -18,12 +18,17 @@ API is designed according to [Send Emulator console commands Guide](https://deve
 git clone https://github.com/jbielak/emulator-api.git
 cd emulator-api
 ./gradlew build
-java -jar target/*.jar
+java -jar build/libs/*.jar
 ```
 
 By default application is running on: 
 ```
 localhost:8080
+```
+
+Base API url is:
+```
+localhost:8080/api/v1
 ```
 
 ### Configuration 
@@ -33,6 +38,9 @@ Using above run command app is running with default configuration from `emulator
 #emulator socket connection properties
 socket.emulator.address=127.0.0.1
 socket.emulator.port=5554
+
+#avd auth
+avd.auth.token=avd_token_here
 ```
 
 Configuration properties:
@@ -47,12 +55,30 @@ For example if the `*.properties` file is in the same directory with the applica
 cd 'app.jar location'
 java -jar app.jar --spring.config.location=file:./custom.properties
 ```
-
 On startup the application is attempting to connect to Android Emulator running on specified address and port so make
  sure to **start the emulator**.
+
+### Connect to Android Virtual Device
+To start working with AVD you need to make 2 steps:
+1. Connect to AVD socket.
+2. Authenticate to AVD.
+
+#### Step 1
+
+Application will attempt connect to AVD on startup on the address and port form configuration. In case connection 
+failure make sure AVD is running and try to connect using Emulator Client service API method `emulator_client/connect`
+ or 
+`emulator_client/connect/{port}/{address}` if you want to pass different address and port.
+
+#### Step 2
+
+Invoke Authentication service API method `/auth` to authenticate with avd token from `*.properties file` or 
+`/auth?authToken=avd_token_here` to pass the token as query param.
+
+After successful authentication interacting with AVD is possible.
  
 ## API
--   [Emlulator Client](https://github.com/jbielak/emulator-api/tree/master/chapters/emulator-client.md)
+-   [Emulator Client](https://github.com/jbielak/emulator-api/tree/master/chapters/emulator-client.md)
 -   [Authentication](https://github.com/jbielak/emulator-api/tree/master/chapters/authentication.md)
 
 ## Built With

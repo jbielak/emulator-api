@@ -9,7 +9,14 @@ public abstract class CmdResponseReader {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CmdResponseReader.class);
 
+    private static final int DEFAULT_WAITING_TIME_MILLIS = 1600;
+
     public static String readResponse(BufferedReader bufferedReader, boolean oneLineConcat) {
+        return readResponse(bufferedReader, oneLineConcat, DEFAULT_WAITING_TIME_MILLIS);
+    }
+
+    public static String readResponse(BufferedReader bufferedReader, boolean oneLineConcat,
+                                      Integer waitingTimeMillis) {
         LOGGER.info("Reading socket started.");
 
         String delimiter = oneLineConcat ? " " : "\n";
@@ -17,7 +24,7 @@ public abstract class CmdResponseReader {
         StringBuffer sb = new StringBuffer();
         String line;
         try {
-            Thread.sleep(1500);
+            Thread.sleep(waitingTimeMillis);
             while (bufferedReader.ready()) {
                 line = bufferedReader.readLine();
                 sb.append(line).append(delimiter);

@@ -44,7 +44,7 @@ public class AvdAuthService implements AuthService {
 
         clientApi.getPrintWriter().println(String.format(AUTH_COMMAND, authToken));
 
-        String response = CmdResponseReader.readResponse(clientApi.getBufferedReader());
+        String response = CmdResponseReader.readResponse(clientApi.getBufferedReader(), true);
         isAuthorized = response.contains(Response.OK.getGeneralResponseValue());
 
         if (response.contains(AuthResponse.AUTH_TOKEN_NOT_MATCH.getAuthResValue())) {
@@ -55,7 +55,7 @@ public class AvdAuthService implements AuthService {
         if (response.contains(Response.UNKNOWN_COMMAND.getGeneralResponseValue())
                 && !isAuthorized) {
             clientApi.getPrintWriter().println(String.format(AUTH_COMMAND, authToken));
-            response = CmdResponseReader.readResponse(clientApi.getBufferedReader());
+            response = CmdResponseReader.readResponse(clientApi.getBufferedReader(), true);
         }
 
         isAuthorized = response.contains(Response.OK.getGeneralResponseValue());

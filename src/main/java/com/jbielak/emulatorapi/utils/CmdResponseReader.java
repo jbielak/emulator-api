@@ -9,8 +9,10 @@ public abstract class CmdResponseReader {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CmdResponseReader.class);
 
-    public static String readResponse(BufferedReader bufferedReader) {
+    public static String readResponse(BufferedReader bufferedReader, boolean oneLineConcat) {
         LOGGER.info("Reading socket started.");
+
+        String delimiter = oneLineConcat ? " " : "\n";
 
         StringBuffer sb = new StringBuffer();
         String line;
@@ -18,7 +20,7 @@ public abstract class CmdResponseReader {
             Thread.sleep(1500);
             while (bufferedReader.ready()) {
                 line = bufferedReader.readLine();
-                sb.append(line).append(" ");
+                sb.append(line).append(delimiter);
             }
         } catch (Exception e) {
             LOGGER.error("Error while reading from socket.", e);

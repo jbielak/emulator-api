@@ -80,6 +80,7 @@ After successful authentication interacting with AVD is possible.
 ## API
 -   [Emulator Client](https://github.com/jbielak/emulator-api/tree/master/chapters/emulator-client.md)
 -   [Authentication](https://github.com/jbielak/emulator-api/tree/master/chapters/authentication.md)
+-   [General Commands](https://github.com/jbielak/emulator-api/tree/master/chapters/general-commands.md)
 
 ## Built With
 -   [Java Development Kit 11](https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html)

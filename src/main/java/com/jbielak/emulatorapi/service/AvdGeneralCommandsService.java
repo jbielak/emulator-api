@@ -20,8 +20,8 @@ public class AvdGeneralCommandsService implements GeneralCommandsService {
 
     @Override
     public void  rotate() {
-        CmdResponseReader.readResponse(clientApi.getBufferedReader(), true);
         clientApi.getPrintWriter().println(GeneralCommand.ROTATE.getValue());
+        CmdResponseReader.readResponse(clientApi.getBufferedReader(), true);
     }
 
     @Override

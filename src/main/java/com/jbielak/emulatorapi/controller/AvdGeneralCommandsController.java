@@ -83,7 +83,7 @@ public class AvdGeneralCommandsController {
 
     @RequestMapping(value = "/avd_snapshot", method = RequestMethod.DELETE)
     public @ResponseBody
-    ResponseEntity<String> avdSnapshot(@QueryParam("name") String name) {
+    ResponseEntity<String> avdSnapshotDelete(@QueryParam("name") String name) {
 
           if (name == null || name.isEmpty()) {
                     return new ResponseEntity<>(String.format("Snapshot name is required for action: %s",

@@ -15,10 +15,10 @@ Success response returns object containing address and port of the connected AVD
 
 **Response object schema**
 
-| Parameter | Type   | Description                               |
-|:----------|:-------|:------------------------------------------|
-| address   | String | Address of running Android Virtual Device |
-| port      | Integer| Port of running Android Virtual Device    |
+| Parameter | Type    | Description                               |
+|:----------|:--------|:------------------------------------------|
+| address   | String  | Address of running Android Virtual Device |
+| port      | Integer | Port of running Android Virtual Device    |
 
 #####Example success response
 ```

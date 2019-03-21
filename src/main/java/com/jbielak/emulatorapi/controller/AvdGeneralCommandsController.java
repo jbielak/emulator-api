@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.QueryParam;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/general_commands")
@@ -36,14 +37,15 @@ public class AvdGeneralCommandsController {
     public @ResponseBody
 
     ResponseEntity<String> avd(@PathVariable("action") String action) {
-        AvdOption avdOption = AvdOption.forValue(action);
-        if (avdOption == null) {
+        Optional<AvdOption> avdOption = AvdOption.fromValue(action);
+
+        if (avdOption.isPresent()) {
+            String response = generalCommandsService.avd(avdOption.get());
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        } else {
             return new ResponseEntity<>("Invalid action value. Allowed values: "
                     + AvdOption.getValues(), HttpStatus.BAD_REQUEST);
         }
-        String response = generalCommandsService.avd(avdOption);
-
-        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/avd_snapshot/list", method = RequestMethod.GET)

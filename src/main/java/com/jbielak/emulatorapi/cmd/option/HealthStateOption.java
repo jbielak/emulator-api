@@ -1,8 +1,11 @@
 package com.jbielak.emulatorapi.cmd.option;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.toMap;
 
 public enum HealthStateOption {
 
@@ -13,13 +16,9 @@ public enum HealthStateOption {
     OVERVOLTAGE("overvoltage"),
     FAILURE("failure");
 
-    private static final Map<String, HealthStateOption> BY_VALUE_MAP = new LinkedHashMap<>();
-
-    static {
-        for (HealthStateOption option : HealthStateOption.values()) {
-            BY_VALUE_MAP.put(option.healthStateOptionValue, option);
-        }
-    }
+    private static final Map<String, HealthStateOption> BY_VALUE_MAP =
+            Stream.of(values()).collect(
+                    toMap(HealthStateOption::getHealthStateOptionValue, e -> e));
 
     private final String healthStateOptionValue;
 
@@ -31,8 +30,8 @@ public enum HealthStateOption {
         return healthStateOptionValue;
     }
 
-    public static HealthStateOption forValue(String value) {
-        return BY_VALUE_MAP.get(value);
+    public static Optional<HealthStateOption> fromValue(String value) {
+        return Optional.ofNullable(BY_VALUE_MAP.get(value));
     }
 
     public static Set<String> getValues() {

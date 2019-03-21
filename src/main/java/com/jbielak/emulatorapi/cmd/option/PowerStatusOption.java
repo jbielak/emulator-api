@@ -1,8 +1,11 @@
 package com.jbielak.emulatorapi.cmd.option;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.toMap;
 
 public enum PowerStatusOption {
 
@@ -12,13 +15,9 @@ public enum PowerStatusOption {
     NOT_CHARGING("not-charging"),
     FULL("full");
 
-    private static final Map<String, PowerStatusOption> BY_VALUE_MAP = new LinkedHashMap<>();
-
-    static {
-        for (PowerStatusOption option : PowerStatusOption.values()) {
-            BY_VALUE_MAP.put(option.powerStatusOptionValue, option);
-        }
-    }
+    private static final Map<String, PowerStatusOption> BY_VALUE_MAP =
+            Stream.of(values()).collect(
+                    toMap(PowerStatusOption::getPowerStatusOptionOptionValue, e -> e));
 
     private final String powerStatusOptionValue;
 
@@ -26,12 +25,12 @@ public enum PowerStatusOption {
         this.powerStatusOptionValue = powerStatusOptionValue;
     }
 
-    public String getAvdOptionValue() {
+    public String getPowerStatusOptionOptionValue() {
         return powerStatusOptionValue;
     }
 
-    public static PowerStatusOption forValue(String value) {
-        return BY_VALUE_MAP.get(value);
+    public static Optional<PowerStatusOption> fromValue(String value) {
+        return Optional.ofNullable(BY_VALUE_MAP.get(value));
     }
 
     public static Set<String> getValues() {

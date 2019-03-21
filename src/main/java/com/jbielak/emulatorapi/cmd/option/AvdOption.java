@@ -1,8 +1,11 @@
 package com.jbielak.emulatorapi.cmd.option;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.toMap;
 
 public enum AvdOption {
 
@@ -11,13 +14,9 @@ public enum AvdOption {
     STATUS("status"),
     NAME("name");
 
-    private static final Map<String, AvdOption> BY_VALUE_MAP = new LinkedHashMap<>();
-
-    static {
-        for (AvdOption option : AvdOption.values()) {
-            BY_VALUE_MAP.put(option.avdOptionValue, option);
-        }
-    }
+    private static final Map<String, AvdOption> BY_VALUE_MAP =
+            Stream.of(values()).collect(
+                    toMap(AvdOption::getAvdOptionValue, e -> e));
 
     private final String avdOptionValue;
 
@@ -29,8 +28,8 @@ public enum AvdOption {
         return avdOptionValue;
     }
 
-    public static AvdOption forValue(String value) {
-        return BY_VALUE_MAP.get(value);
+    public static Optional<AvdOption> fromValue(String value) {
+        return Optional.ofNullable(BY_VALUE_MAP.get(value));
     }
 
     public static Set<String> getValues() {

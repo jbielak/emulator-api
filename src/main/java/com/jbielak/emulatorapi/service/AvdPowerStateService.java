@@ -37,7 +37,7 @@ public class AvdPowerStateService implements PowerStateService {
     public String setPowerStatus(PowerStatusOption powerStatusOption) {
         clientApi.getPrintWriter().println(
                 String.format(PowerStateCommand.POWER_STATUS.getValue(),
-                        powerStatusOption.getAvdOptionValue()));
+                        powerStatusOption.getPowerStatusOptionOptionValue()));
 
         return CmdResponseReader.readResponse(clientApi.getBufferedReader(), true);
     }

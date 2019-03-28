@@ -82,6 +82,7 @@ After successful authentication interacting with AVD is possible.
 -   [Authentication](https://github.com/jbielak/emulator-api/tree/master/chapters/authentication.md)
 -   [General Commands](https://github.com/jbielak/emulator-api/tree/master/chapters/general-commands.md)
 -   [Crash Emulator](https://github.com/jbielak/emulator-api/tree/master/chapters/crash-emulator.md)
+-   [Geo Location](https://github.com/jbielak/emulator-api/tree/master/chapters/geo-location.md)
 -   [Power State](https://github.com/jbielak/emulator-api/tree/master/chapters/power-state.md)
 
 ## Built With

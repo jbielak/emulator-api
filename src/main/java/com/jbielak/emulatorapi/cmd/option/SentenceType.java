@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 import static java.util.stream.Collectors.toMap;
 
 public enum SentenceType {
-    GP("$GP"),
+    
     GPGGA("$GPGGA"),
     GPRMC("$GPRMC");
 
